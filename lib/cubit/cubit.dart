@@ -6,33 +6,41 @@ class AppCubit extends Cubit<loginRegisterState> {
   AppCubit(super.initialState);
   static AppCubit get(context) => BlocProvider.of(context);
 
-  late Database database;
+  //late Database database;
+  static Database? _database;
+  Future<Database?> get database async {
+    _database ??= await createDatabase();
+  }
+
+  //var database;
   late List<Map<String, Object?>> userData;
   bool b = false;
 
-  void createDatabase() {
+  createDatabase() {
     openDatabase(
-      "loginRegister.db",
+      "users.db",
       version: 1,
       onCreate: (db, version) {
+        print("create database");
         db
             .execute(
                 "create table users(id INTEGER PRIMARY KEY,name TEXT,email TEXT,mobile TEXT, password TEXT)")
-            .then((value) => null)
+            .then((value) => print("create table"))
             .catchError(onError);
       },
+      onOpen: (db) => print("database open"),
     ).then((value) {
-      database = value;
+      _database = value;
       emit(createDatabaseState());
     });
   }
 
-  void addUser(
+  addUser(
       {required String name,
       required String email,
       required String mobile,
       required String password}) async {
-    await database.transaction((txn) async {
+    await _database!.transaction((txn) async {
       txn
           .rawInsert(
               'insert into users(name,email,mobile,password) values("$name","$email","$mobile","$password")')
@@ -42,24 +50,29 @@ class AppCubit extends Cubit<loginRegisterState> {
     });
   }
 
-  void login({required String name, required String password}) async {
+  void login({required String email, required String password}) async {
     b = false;
-    await database.transaction((txn) async {
-      userData = txn.rawQuery(
-          "select * from users where user = ?", ['$name']).then((value) {
+    if (_database != null) {
+      await _database!.transaction((txn) async {
+        userData = await txn
+            .rawQuery("select * from users where email = ?", ['$email']);
         for (var userr in userData) {
-          if (userr["password"] == password) {
+          if (userr["password"].toString() == password.toString()) {
             b = true;
             break;
           }
         }
-        emit(loginState());
-      }).catchError(onError) as List<Map<String, Object?>>;
-    });
+        ;
+      });
+    }
+    if (b)
+      emit(loginYState());
+    else
+      emit(loginXState());
   }
 
-  bool loginValid({required String name, required String password}) {
-    login(name: name, password: password);
+  bool loginValid({required String email, required String password}) {
+    login(email: email, password: password);
     if (b == true) {
       return true;
     }
