@@ -63,38 +63,45 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(
-                    flex: 20,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const FaIcon(
-                      FontAwesomeIcons.facebook,
-                      color: Colors.blue,
-                      size: 25,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(
+                      flex: 4,
                     ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const FaIcon(
-                      FontAwesomeIcons.twitter,
-                      color: Colors.blue,
-                      size: 25,
+                    IconButton(
+                      onPressed: () {},
+                      icon: const FaIcon(
+                        FontAwesomeIcons.facebook,
+                        color: Colors.blue,
+                        size: 25,
+                      ),
                     ),
-                  ),
-                  const Spacer(
-                    flex: 20,
-                  ),
-                ],
+                    const Spacer(
+                      flex: 1,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const FaIcon(
+                        FontAwesomeIcons.twitter,
+                        color: Colors.blue,
+                        size: 25,
+                      ),
+                    ),
+                    const Spacer(
+                      flex: 4,
+                    ),
+                  ],
+                ),
               ),
               NotHaveAccount(
-                registerAction: () {},
+                registerAction: () {
+                  //// Navigate to Register Screen...!!!
+                },
               ),
             ],
           ),

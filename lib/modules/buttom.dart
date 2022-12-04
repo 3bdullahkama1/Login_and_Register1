@@ -8,16 +8,7 @@ class Button extends StatelessWidget {
   EdgeInsets padding;
   FontWeight fontWeight;
   double fontSize;
-  // Button({
-  //   super.key,
-  //   this.padding = const EdgeInsets.only(
-  //     bottom: 15,
-  //   ),
-  //   this.backgroundColor = Colors.blue,
-  //   required this.action,
-  //   required this.text,
-  //   textColor = Colors.white,
-  // });
+  EdgeInsets textPadding;
   Button({
     super.key,
     required this.text,
@@ -27,7 +18,11 @@ class Button extends StatelessWidget {
     this.fontSize = 20,
     this.fontWeight = FontWeight.w600,
     this.padding = const EdgeInsets.only(
-      bottom: 15,
+      bottom: 25,
+      top: 20,
+    ),
+    this.textPadding = const EdgeInsets.symmetric(
+      vertical: 20,
     ),
   });
   @override
@@ -36,10 +31,9 @@ class Button extends StatelessWidget {
       padding: padding,
       width: double.infinity,
       child: TextButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            backgroundColor,
-          ),
+        style: TextButton.styleFrom(
+          padding: textPadding,
+          backgroundColor: backgroundColor,
         ),
         onPressed: action(),
         child: Text(

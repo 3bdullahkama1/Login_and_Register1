@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 
 class TextInput extends StatelessWidget {
   String label;
-  Color textColor;
   double fontSize;
   EdgeInsets padding;
+  EdgeInsets contentPadding;
 
   TextInput({
     super.key,
     required this.label,
-    this.textColor = const Color.fromRGBO(189, 189, 189, 1),
     this.fontSize = 20,
     this.padding = const EdgeInsets.only(
-      bottom: 10,
+      bottom: 30,
+      top: 35,
+    ),
+    this.contentPadding = const EdgeInsets.symmetric(
+      horizontal: 5,
+      vertical: 10,
     ),
   });
 
@@ -22,10 +26,10 @@ class TextInput extends StatelessWidget {
       padding: padding,
       child: TextFormField(
         decoration: InputDecoration(
+          contentPadding: contentPadding,
           label: Text(
             label,
             style: TextStyle(
-              color: textColor,
               fontSize: fontSize,
             ),
           ),

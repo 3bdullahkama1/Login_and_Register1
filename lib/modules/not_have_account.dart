@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_and_register1/modules/text_button.dart';
+import 'package:login_and_register1/modules/text_input.dart';
 
 class NotHaveAccount extends StatelessWidget {
   String textMessage;
@@ -32,15 +34,11 @@ class NotHaveAccount extends StatelessWidget {
             fontSize: textFontSize,
           ),
         ),
-        TextButton(
-          onPressed: registerAction(),
-          child: Text(
-            registerMessage,
-            style: TextStyle(
-              color: registerColor,
-              fontSize: registerFontSize,
-            ),
-          ),
+        Text_Button(
+          text: registerMessage,
+          action: registerAction,
+          color: registerColor,
+          fontSize: registerFontSize,
         ),
       ],
     );

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class MainTitle extends StatelessWidget {
   String title;
-  Color color = Colors.blue;
-  double fontSize = 40;
+  Color color;
+  double fontSize;
   EdgeInsets padding;
 
   MainTitle({
     super.key,
     required this.title,
     this.color = Colors.blue,
-    this.fontSize = 40,
+    this.fontSize = 45,
     this.padding = const EdgeInsets.only(
-      bottom: 5,
+      bottom: 15,
     ),
   });
 
