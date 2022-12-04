@@ -51,14 +51,14 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Button(text: "login", action: () {}),
+              Button(
+                text: "login",
+                action: () {},
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    color: Colors.red,
-                  ),
-                  const Text(
+                children: const [
+                  Text(
                     "OR",
                   ),
                 ],
@@ -93,7 +93,9 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              NotHaveAccount(registerAction: () {}),
+              NotHaveAccount(
+                registerAction: () {},
+              ),
             ],
           ),
         ),
