@@ -35,7 +35,9 @@ class Button extends StatelessWidget {
           padding: textPadding,
           backgroundColor: backgroundColor,
         ),
+        onLongPress: () =>print("long Press==================="),
         onPressed: action(),
+        
         child: Text(
           text.toUpperCase(),
           style: TextStyle(

@@ -5,10 +5,12 @@ class TextInput extends StatelessWidget {
   double fontSize;
   EdgeInsets padding;
   EdgeInsets contentPadding;
+  TextEditingController controller;
 
   TextInput({
     super.key,
     required this.label,
+    required this.controller,
     this.fontSize = 20,
     this.padding = const EdgeInsets.only(
       bottom: 30,
@@ -25,6 +27,7 @@ class TextInput extends StatelessWidget {
     return Padding(
       padding: padding,
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           contentPadding: contentPadding,
           label: Text(
